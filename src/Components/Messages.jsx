@@ -15,7 +15,7 @@ const Messages = () => {
                     setMessages(doc.data().messages || []);
                 }
             });
-
+            
             return () => {
                 unSub();
             };
