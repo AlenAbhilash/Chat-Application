@@ -25,7 +25,7 @@ const Messages = () => {
     console.log(messages);
 
     return (
-        <div className='bg-white/40 p-5 mt-4 rounded-2xl text-gray-700 h-[370px] overflow-y-scroll hide-scrollbar'>
+        <div className='bg-white/40  p-5 mt-4 rounded-2xl text-gray-700 h-[370px] overflow-y-scroll hide-scrollbar'>
             {messages.length > 0 ? (
                 messages.map((message) => (
                     <Message message={message} key={message.id} />
