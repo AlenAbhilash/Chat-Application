@@ -54,7 +54,7 @@ function Login() {
                     Login Your Account
                 </h1>
                 <div className=' mt-2 md:mt-16 md:ms-10'>
-                    {/* Toast Notifications */}
+                    {/* Toast Notifications */}   
                     {showToast && (
                         <Toast
                             type={toast.type === 'success' ? 'success' : 'error'}
