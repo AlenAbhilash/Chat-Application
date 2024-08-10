@@ -66,24 +66,24 @@ const Register = () => {
         <div className="bg-black">
             {/* main head */}
             <div className='flex'>
-                <h1 className="font-sans text-transparent bg-clip-text bg-white font-bold text-2xl w-auto text-center to-slate-700 md:text-5xl m-[50px] md:mt-[80px] md:w-[565px] h-auto md:ms-[500px]">
+                <h1 className=" w-auto h-auto font-sans mt-2 text-transparent bg-clip-text bg-white font-bold text-lg text-center to-slate-700 md:text-5xl m-[50px] md:mt-[80px] md:w-[565px] md:h-[80px]  md:ms-[500px]">
                     Register Your Account
                 </h1>
-                <div className='md:mt-16 md:ms-10'>
+                <div className=' mt-2  md:mt-16 md:ms-10'>
                     {/* Toast notifications */}
                     {showToast && (
                         <Toast
                             type={toast.type === 'success' ? 'success' : 'error'}
                         >
-                            <div className={`inline-flex md:h-8 md:w-8 shrink-0 items-center justify-center rounded-lg ${toast.type === 'success' ? 'bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200' : 'bg-red-200 text-red-500 dark:bg-red-500 dark:text-red-300'}`}>
+                            <div className={` mt-2 w-5 h-5 inline-flex md:h-8 md:w-8 shrink-0 items-center justify-center rounded-lg ${toast.type === 'success' ? 'bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200' : 'bg-red-200 text-red-500 dark:bg-red-500 dark:text-red-300'}`}>
                                 {toast.type === 'success' ? (
-                                    <HiCheck className="h-5 w-5" />
+                                    <HiCheck className="w-3 h-3  md:h-5 md:w-5   " />
                                 ) : (
-                                    <HiExclamation className="h-5 w-5" />
+                                    <HiExclamation className="w-3 h-3 md:h-5 md:w-5" />
                                 )}
                             </div>
                             <div className="ml-3 text-sm font-normal">{toast.message}</div>
-                            <button onClick={() => setShowToast(false)} className="h-5 w-5 m-2 ms-4">
+                            <button onClick={() => setShowToast(false)} className="h-3 w-3  md:h-5 md:w-5 md:m-2 ms-4">
                                 <HiX />
                             </button>
                         </Toast>
