@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from '../Components/Sidebar';
+import Sidebar from '../Components/sidebar.jsx';
 import Chat from '../Components/Chat';
 const HomeMain = () => {
     return (
