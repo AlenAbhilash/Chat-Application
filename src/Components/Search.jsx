@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Chats from './Chats';
 import LogOut from './LogOut';
 import { collection, query, where, getDocs, setDoc, doc, updateDoc, serverTimestamp, getDoc } from 'firebase/firestore';
@@ -10,6 +10,16 @@ const Search = () => {
   const [username, setUsername] = useState('');
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleSearch = async () => {
     if (username.trim() === '') {
@@ -43,7 +53,13 @@ const Search = () => {
   };
 
   const handleKey = (e) => {
-    if (e.code === "Enter") {
+    if (e.code === "Enter" && !isMobile) {
+      handleSearch();
+    }
+  };
+
+  const handleMobileSearch = () => {
+    if (username.trim() !== '') {
       handleSearch();
     }
   };
@@ -54,24 +70,17 @@ const Search = () => {
       return;
     }
 
-    // Compute a unique combined ID for the chat
     const combinedId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid;
-
-    // Create a reference to the chat document
     const chatDocRef = doc(db, "chats", combinedId);
 
     try {
-      // Check if the chat document exists
       const response = await getDoc(chatDocRef);
       if (!response.exists()) {
-        // Create a new chat document with an empty messages array if it doesn't exist
         await setDoc(chatDocRef, { messages: [] });
 
-        // Create references for userChats for both users
         const userChatsRefCurrentUser = doc(db, "usersChats", currentUser.uid);
         const userChatsRefOtherUser = doc(db, "usersChats", user.uid);
 
-        // Update the userChats document for the current user
         await updateDoc(userChatsRefCurrentUser, {
           [`${combinedId}.userInfo`]: {
             uid: user.uid,
@@ -81,7 +90,6 @@ const Search = () => {
           [`${combinedId}.data`]: serverTimestamp()
         });
 
-        // Update the userChats document for the other user
         await updateDoc(userChatsRefOtherUser, {
           [`${combinedId}.userInfo`]: {
             uid: currentUser.uid,
@@ -98,8 +106,8 @@ const Search = () => {
     } catch (error) {
       console.error("Error handling chat selection:", error);
     }
-    setUser(null)
-    setUsername("")
+    setUser(null);
+    setUsername("");
   };
 
   return (
@@ -140,8 +148,19 @@ const Search = () => {
         <Chats />
         <LogOut />
       </div>
+      {isMobile && (
+        <button
+        type="button"
+        className="h-10 w-32 m-[10px] items-center rounded-full bg-gradient-to-r from-purple-500 via-red-500 to-yellow-500 p-[1.5px] text-white"
+        onClick={handleMobileSearch}
+    >
+        <div className="flex h-full w-full items-center justify-center rounded-full bg-gray-900">
+            Search 
+        </div>
+    </button>
+      )}
     </div>
   );
-}
+};
 
 export default Search;
