@@ -66,7 +66,7 @@ const Register = () => {
         <div className="bg-black">
             {/* main head */}
             <div className='flex'>
-                <h1 className=" w-auto h-auto font-sans mt-2 text-transparent bg-clip-text bg-white font-bold text-lg text-center to-slate-700 md:text-5xl m-[50px] md:mt-[80px] md:w-[565px] md:h-[80px]  md:ms-[500px]">
+                <h1 className=" w-auto h-auto font-sans mt-5 text-transparent bg-clip-text bg-white font-bold text-lg text-center to-slate-700 md:text-5xl m-[50px] md:mt-[80px] md:w-[565px] md:h-[80px]  md:ms-[500px]">
                     Register Your Account
                 </h1>
                 <div className=' mt-2  md:mt-16 md:ms-10'>

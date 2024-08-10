@@ -53,7 +53,7 @@ function Login() {
                 <h1 className="font-sans text-transparent bg-clip-text bg-white font-bold text-2xl w-auto text-center to-slate-700 md:text-5xl m-[50px] md:mt-[80px] md:w-[565px] h-auto md:ms-[500px]">
                     Login Your Account
                 </h1>
-                <div className='md:mt-16 md:ms-10'>
+                <div className=' mt-2 md:mt-16 md:ms-10'>
                     {/* Toast Notifications */}
                     {showToast && (
                         <Toast
